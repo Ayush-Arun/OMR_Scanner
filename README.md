@@ -41,29 +41,27 @@ omr_evaluator/
 
 ## 🚀 Quick Start
 
+### Get Started in 3 Commands
+
+```bash
+git clone https://github.com/Ayush-Arun/OMR_Scanner.git
+cd OMR_Scanner
+pip install -r requirements.txt
+python process_and_view.py
+```
+
 ### Prerequisites
 
 - **Python 3.8+**
 - **pip** (Python package installer)
 - **Web browser** (for viewing results)
 
-### Installation
+### For Updates
 
-1. **Clone or download the project**:
-   ```bash
-   git clone <repository-url>
-   cd omr_evaluator
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **One-command setup**:
-   ```bash
-   python process_and_view.py
-   ```
+When you add new photos or change answer keys:
+```bash
+python update_results.py
+```
 
 ## 📋 Step-by-Step Usage Guide
 
