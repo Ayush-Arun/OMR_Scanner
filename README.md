@@ -118,6 +118,82 @@ The system automatically generates `omr_results_dynamic.html` which:
 - ✅ **Responsive** design for all devices
 - ✅ **Real-time statistics** calculation
 
+## 🐳 Docker & Kubernetes Deployment
+
+### Docker Deployment
+
+#### Quick Start with Docker
+```bash
+# Build and run with Docker
+./docker-run.sh
+```
+
+#### Manual Docker Commands
+```bash
+# Build the image
+docker build -t omr-scanner:latest .
+
+# Run the container
+docker run -d \
+    --name omr-scanner \
+    -p 8501:8501 \
+    -v $(pwd)/set1_papers:/app/set1_papers \
+    -v $(pwd)/set2_papers:/app/set2_papers \
+    -v $(pwd)/answers:/app/answers \
+    -v $(pwd)/results:/app/results \
+    omr-scanner:latest
+```
+
+#### Docker Compose
+```bash
+# Start with docker-compose
+docker-compose up -d
+
+# Stop
+docker-compose down
+```
+
+### Kubernetes Deployment
+
+#### Prerequisites
+- Kubernetes cluster (local or cloud)
+- kubectl configured
+- Docker image registry access
+
+#### Deploy to Kubernetes
+```bash
+# Deploy everything
+./k8s-deploy.sh
+
+# Or deploy manually
+kubectl apply -f k8s/
+```
+
+#### Access the Application
+```bash
+# Port forward to access locally
+kubectl port-forward service/omr-scanner-service 8501:8501 -n omr-scanner
+
+# Then open http://localhost:8501
+```
+
+### Production Deployment
+
+#### Cloud Providers
+- **AWS EKS**: Use the Kubernetes manifests
+- **Google GKE**: Deploy with kubectl
+- **Azure AKS**: Full Kubernetes support
+- **DigitalOcean**: Managed Kubernetes
+
+#### Scaling
+```bash
+# Scale up replicas
+kubectl scale deployment omr-scanner --replicas=5 -n omr-scanner
+
+# Auto-scaling (if HPA is configured)
+kubectl autoscale deployment omr-scanner --cpu-percent=70 --min=2 --max=10 -n omr-scanner
+```
+
 ## 🌐 Web Hosting Guide
 
 ### Option 1: GitHub Pages (Free)
